@@ -98,8 +98,8 @@ score team =
 teamScore : Team -> Html Msg
 teamScore team =
     dl [ class "score" ]
-        [ dd [] [ text team.name ]
-        , dt [] [ text <| String.fromInt (score team) ]
+        [ dt [] [ text team.name ]
+        , dd [] [ text <| String.fromInt (score team) ]
         ]
 
 

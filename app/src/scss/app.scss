@@ -1,19 +1,26 @@
 @import 'reset';
 
-body {
+$grass: #659637;
+$dark-grass: darken($grass, 20%);
+$darker-grass: darken($grass, 40%);
+
+html {
   font-size: 16px;
+  background-color: $grass;
+  color: #fff;
 }
 
 h1, h2 {
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
   font-weight: 600;
 }
 
 h1 {
-  background-color: grey;
+  background-color: $dark-grass;
   color: white;
   padding: 2rem;
+  border-bottom: 1rem solid $darker-grass;
 }
 
 h2 {
@@ -32,12 +39,6 @@ section {
   }
 }
 
-.score {
-  font-size: 20rem;
-  font-weight: 600;
-  text-align: center;
-}
-
 dl {
   width: 10rem;
 
@@ -52,10 +53,32 @@ dl {
   dd {
     font-size: 2rem;
     font-weight: 600;
-    padding: 1rem;
   }
 }
 
 .controls dl {
   cursor: pointer;
+  background-color: $dark-grass;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: .2rem;
+
+  &:active {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.score {
+  padding-top: 7rem;
+
+  dt, dd {
+    font-weight: 600;
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  dd {
+    font-size: 20rem;
+  }
 }
