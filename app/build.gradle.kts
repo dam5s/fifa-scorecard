@@ -48,8 +48,8 @@ tasks {
         into("build")
 
         doLast {
-            File("build").mkdirs()
-            File("build/Staticfile").createNewFile()
+            File("$projectDir/build").mkdirs()
+            File("$projectDir/build/Staticfile").createNewFile()
         }
     }
 }
