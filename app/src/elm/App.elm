@@ -1,9 +1,9 @@
 module App exposing (main)
 
 import Browser
-import Html exposing (Html, dd, div, dl, dt, h1, h2, section, text)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html exposing (Html, dd, div, dl, dt, h1, h2, input, section, text)
+import Html.Attributes exposing (class, value)
+import Html.Events exposing (onClick, onInput)
 
 
 type alias Flags =
@@ -99,10 +99,14 @@ score team =
     team.goals + team.redCards + team.goalsByGoalkeeper * goalKeeperMultiplier + team.redCardsByGoalkeeper * goalKeeperMultiplier - team.refereeWarnings
 
 
-teamScore : Team -> Html Msg
-teamScore team =
+teamScore : Team -> ((Team -> Team) -> Msg) -> Html Msg
+teamScore team updateMsg =
+    let
+        updateTeamName value =
+            updateMsg (\t -> { t | name = value })
+    in
     dl [ class "score" ]
-        [ dt [] [ text team.name ]
+        [ dt [] [ input [ onInput updateTeamName, value team.name ] [] ]
         , dd [] [ text <| String.fromInt (score team) ]
         ]
 
@@ -113,8 +117,8 @@ view model =
         [ h1 [] [ text "FIFA Scorecard" ]
         , section []
             [ teamControls model.teamA UpdateTeamA
-            , teamScore model.teamA
-            , teamScore model.teamB
+            , teamScore model.teamA UpdateTeamA
+            , teamScore model.teamB UpdateTeamB
             , teamControls model.teamB UpdateTeamB
             ]
         ]
