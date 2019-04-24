@@ -92,7 +92,11 @@ teamControls team updateMsg =
 
 score : Team -> Int
 score team =
-    team.goals + team.redCards + team.goalsByGoalkeeper * 2 + team.redCardsByGoalkeeper * 2 - team.refereeWarnings
+    let
+        goalKeeperMultiplier =
+            3
+    in
+    team.goals + team.redCards + team.goalsByGoalkeeper * goalKeeperMultiplier + team.redCardsByGoalkeeper * goalKeeperMultiplier - team.refereeWarnings
 
 
 teamScore : Team -> Html Msg
